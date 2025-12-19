@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple ToDo App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .todo-container {
+            background: white;
+            padding: 20px;
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input {
+            width: 75%;
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        li {
+            background: #eee;
+            padding: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 4px;
+        }
+
+        li button {
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="todo-container">
+    <h2>To-Do List</h2>
+    <input type="text" id="todoInput" placeholder="Add a task">
+    <button onclick="addTodo()">Add</button>
+
+    <ul id="todoList"></ul>
+</div>
+
+<script>
+    function addTodo() {
+        const input = document.getElementById("todoInput");
+        const task = input.value.trim();
+
+        if (task === "") {
+            alert("Please enter a task");
+            return;
+        }
+
+        const li = document.createElement("li");
+        li.innerHTML = `
+            ${task}
+            <button onclick="this.parentElement.remove()">X</button>
+        `;
+
+        document.getElementById("todoList").appendChild(li);
+        input.value = "";
+    }
+</script>
+
+</body>
+</html>
